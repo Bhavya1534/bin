@@ -3,138 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Resume Generator</title>
+    <title>Your Portfolio</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ebc310;
+            margin: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Responsive layout for navigation menu */
+        @media (max-width: 768px) {
+            nav li {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        /* Section styles */
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #007BFF;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         <header>
-            <h1>Resume Generator</h1>
-            <nav>
-                <!-- Add navigation links here -->
-            </nav>
+            <h1>BHAVYA BHAVESH VAISHNANI</h1>
+            <p>Web Developer</p>
         </header>
-
-        <main>
-            <form @submit.prevent="generateResume">
-                <h2>Personal Information</h2>
-                <label for="name">Name:</label>
-                <input type="text" id="name" v-model="personalInfo.name">
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" v-model="personalInfo.email">
-
-                <!-- Add more personal information fields as needed -->
-
-                <h2>Education</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Degree</th>
-                            <th>Year</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(edu, index) in education" :key="index">
-                            <td><input type="text" v-model="edu.degree"></td>
-                            <td><input type="text" v-model="edu.year"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2>Projects</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Project Name</th>
-                            <th>Project Link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(project, index) in projects" :key="index">
-                            <td><input type="text" v-model="project.name"></td>
-                            <td><input type="text" v-model="project.link"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <!-- Add more sections for work experience, skills, etc., using similar structures -->
-                
-                <button type="button" @click="addEducation">Add Education</button>
-                <button type="button" @click="addProject">Add Project</button>
-                <button type="submit">Generate Resume</button>
-            </form>
-
-            <!-- Display the generated resume -->
-            <div v-if="showResume">
-                <h2>Generated Resume</h2>
-                <p>Name: {{ personalInfo.name }}</p>
-                <p>Email: {{ personalInfo.email }}</p>
-                <h3>Education</h3>
-                <ul>
-                    <li v-for="(edu, index) in education" :key="index">
-                        {{ edu.degree }}, {{ edu.year }}
-                    </li>
-                </ul>
-                <h3>Projects</h3>
-                <ul>
-                    <li v-for="(project, index) in projects" :key="index">
-                        {{ project.name }} - {{ project.link }}
-                    </li>
-                </ul>
-            </div>
-        </main>
-
-        <footer>
-            <!-- Add footer content here -->
-        </footer>
+        <nav>
+            <ul>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/projects">Projects</router-link></li>
+                <li><router-link to="/about">About Me</router-link></li>
+                <li><router-link to="/contact">Contact</router-link></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <router-view></router-view>
+        </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.0/dist/vue.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.4/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-router@4.0.11/dist/vue-router.js"></script>
     <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    personalInfo: {
-                        name: '',
-                        email: '',
-                    },
-                    education: [
-                        {
-                            degree: '',
-                            year: ''
-                        }
-                    ],
-                    projects: [
-                        {
-                            name: '',
-                            link: ''
-                        }
-                    ],
-                    showResume: false // Added to control the display of the generated resume
-                }
-            },
-            methods: {
-                addEducation() {
-                    this.education.push({
-                        degree: '',
-                        year: ''
-                    });
-                },
-                addProject() {
-                    this.projects.push({
-                        name: '',
-                        link: ''
-                    });
-                },
-                generateResume() {
-                    // Set showResume to true to display the generated resume
-                    this.showResume = true;
-                }
-            }
-        });
-
-        app.mount('#app');
+        // Vue components and routing code here...
     </script>
 </body>
 </html>
+
